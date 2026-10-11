@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 public class UsuarioDAO {
 
+    // Método para validar login
     public Usuario validarLogin(String rut, String contraseña) {
         Usuario usuario = null;
         String sql = "SELECT * FROM usuarios WHERE rut = ? AND contraseña = ?";
@@ -34,5 +35,23 @@ public class UsuarioDAO {
             System.out.println("❌ Error en validarLogin: " + e.getMessage());
         }
         return usuario;
+    }
+
+    // Obtener el id real del estudiante desde la tabla estudiantes
+    public int obtenerIdEstudiantePorRut(String rut) {
+        int id = -1;
+        String sql = "SELECT id FROM estudiantes WHERE rut = ?";
+        try {
+            Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, rut);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error al obtener id estudiante: " + e.getMessage());
+        }
+        return id;
     }
 }

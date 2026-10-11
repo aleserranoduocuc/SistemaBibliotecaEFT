@@ -4,6 +4,7 @@ import dao.UsuarioDAO;
 import modelo.Usuario;
 import vista.LoginView;
 import vista.MenuBibliotecarioView;
+import vista.MenuEstudianteView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,16 +37,24 @@ public class LoginController implements ActionListener {
             JOptionPane.showMessageDialog(vista,
                     "¡Bienvenido/a " + usuario.getNombre() + "!");
 
-            vista.dispose(); // Cerrar el Login
+            vista.dispose();
 
             if (usuario.getRol().equals("bibliotecario")) {
-                // Abrir el Menú del Bibliotecario
                 MenuBibliotecarioView menu = new MenuBibliotecarioView();
                 new MenuBibliotecarioController(menu);
                 menu.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null,
-                        "Módulo Estudiante (por implementar)");
+                // Buscar el id real del estudiante
+                int idEstudiante = usuarioDAO.obtenerIdEstudiantePorRut(usuario.getRut());
+                if (idEstudiante == -1) {
+                    JOptionPane.showMessageDialog(null,
+                            "⚠️ Tu usuario no está registrado como estudiante.");
+                    return;
+                }
+                MenuEstudianteView menu = new MenuEstudianteView(
+                        usuario.getNombre(), idEstudiante);
+                new MenuEstudianteController(menu);
+                menu.setVisible(true);
             }
 
         } else {
