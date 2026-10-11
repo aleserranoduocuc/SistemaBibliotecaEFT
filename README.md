@@ -41,3 +41,93 @@ Sistema de escritorio desarrollado en **Java** con interfaz gráfica **JFrame (S
 ---
 
 ## 📦 Estructura del proyecto
+SistemaBibliotecaEFT/
+├── src/main/java/
+│ ├── Main.java
+│ ├── controlador/
+│ │ ├── LoginController.java
+│ │ ├── MenuBibliotecarioController.java
+│ │ ├── GestionLibrosController.java
+│ │ ├── GestionEstudiantesController.java
+│ │ ├── GestionPrestamosController.java
+│ │ └── ReportesController.java
+│ ├── dao/
+│ │ ├── UsuarioDAO.java
+│ │ ├── LibroDAO.java
+│ │ ├── EstudianteDAO.java
+│ │ ├── PrestamoDAO.java
+│ │ └── ReporteDAO.java
+│ ├── hilos/
+│ │ └── TareaPrestamo.java
+│ ├── modelo/
+│ │ ├── Usuario.java
+│ │ ├── Estudiante.java
+│ │ ├── Categoria.java
+│ │ ├── Libro.java
+│ │ └── Prestamo.java
+│ ├── util/
+│ │ └── DatabaseConnection.java
+│ └── vista/
+│ ├── LoginView.java
+│ ├── MenuBibliotecarioView.java
+│ ├── GestionLibrosView.java
+│ ├── GestionEstudiantesView.java
+│ ├── GestionPrestamosView.java
+│ └── ReportesView.java
+└── pom.xml
+
+text
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+### 1. Requisitos previos
+- JDK 17 o superior.
+- MySQL 8.0 instalado y en ejecución.
+- IntelliJ IDEA (recomendado).
+
+### 2. Configurar la base de datos
+Ejecutar en MySQL Workbench los siguientes scripts (incluidos en el proyecto):
+
+1. `Script_crea_tablas_biblioteca.sql` → crea la base de datos y las 5 tablas.
+2. `Script_poblado_tablas_biblioteca.sql` → inserta los datos de prueba.
+
+### 3. Configurar la contraseña de MySQL
+Abrir el archivo `src/main/java/util/DatabaseConnection.java` y reemplazar:
+
+```java
+private static final String PASSWORD = "TU_CONTRASEÑA_AQUI";
+por tu contraseña real de MySQL.
+
+4. Ejecutar
+Ejecutar el archivo Main.java desde IntelliJ. Se abrirá la ventana de Login.
+
+👤 Usuarios de prueba
+RUT	Contraseña	Rol
+12345678-9	clave123	Bibliotecario
+98765432-1	clave123	Estudiante
+11222333-4	clave123	Estudiante
+22334455-6	clave123	Estudiante
+🧪 Funcionalidades implementadas
+✅ Autenticación de usuarios con roles (bibliotecario / estudiante).
+
+✅ CRUD completo de Libros.
+
+✅ CRUD completo de Estudiantes.
+
+✅ Registro de préstamos con hilos y sincronización.
+
+✅ Registro de devoluciones.
+
+✅ Reportes: libros más prestados, historial por estudiante, libros en préstamo.
+
+✅ Conexión a MySQL con JDBC y patrón Singleton.
+
+✅ Arquitectura MVC + DAO.
+
+👨‍💻 Autor
+Alejandro Serrano
+Estudiante de Duoc UC - Modalidad Online
+Asignatura: Desarrollo Orientado a Objetos II
+Año: 2026
