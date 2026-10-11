@@ -90,8 +90,8 @@ text
 ### 2. Configurar la base de datos
 Ejecutar en MySQL Workbench los siguientes scripts (incluidos en el proyecto):
 
-1. `Script_crea_tablas_biblioteca.sql` → crea la base de datos y las 5 tablas.
-2. `Script_poblado_tablas_biblioteca.sql` → inserta los datos de prueba.
+1. `PRY2203_EFT_S9_Script_crea_tablas_biblioteca.sql` → crea la base de datos y las 5 tablas.
+2. `PRY2203_EFT_S9_Script_poblado_tablas_biblioteca.sql` → inserta los datos de prueba.
 
 ### 3. Configurar la contraseña de MySQL
 Abrir el archivo `src/main/java/util/DatabaseConnection.java` y reemplazar:
